@@ -1,6 +1,7 @@
 from numpy import *
 import pickle
-from pysqlite2 import dbapi2 as sqlite
+#from pysqlite2 import dbapi2 as sqlite
+import sqlite3 as sqlite
 
 
 class Indexer(object):
