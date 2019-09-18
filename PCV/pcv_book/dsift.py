@@ -26,13 +26,16 @@ def process_image_dsift(imagename,resultname,size=20,steps=10,force_orientation=
     xx,yy = x.flatten(),y.flatten()
     frame = array([xx,yy,scale*ones(xx.shape[0]),zeros(xx.shape[0])])
     savetxt('tmp.frame',frame.T,fmt='%03.3f')
+
+    path = os.path.abspath(os.path.join(os.path.dirname("__file__"), os.path.pardir))
+    path = path + "\\utils\\win32vlfeat\\sift.exe "
     
     if force_orientation:
-        cmmd = str("sift "+imagename+" --output="+resultname+
+        cmmd = str(path +imagename+" --output="+resultname+
                     " --read-frames=tmp.frame --orientations")
     else:
-        cmmd = str("sift "+imagename+" --output="+resultname+
+        cmmd = str(path +imagename+" --output="+resultname+
                     " --read-frames=tmp.frame")
     os.system(cmmd)
-    print 'processed', imagename, 'to', resultname
+    print 'processed', imagename, 'to',
 

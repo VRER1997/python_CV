@@ -14,11 +14,13 @@ for i, pklfile in enumerate(pklist):
         class_1 = pickle.load(f)
         class_2 = pickle.load(f)
         labels = pickle.load(f)
-    # load test data using Pickle
-    with open(pklfile[:-4]+'_test.pkl', 'r') as f:
-        class_1 = pickle.load(f)
-        class_2 = pickle.load(f)
-        labels = pickle.load(f)
+    print len(class_1)
+    # # load test data using Pickle
+    # with open(pklfile[:-4]+'_test.pkl', 'r') as f:
+    #     class_1 = pickle.load(f)
+    #     class_2 = pickle.load(f)
+    #     labels = pickle.load(f)
+    # print len(class_1)
 
     model = knn.KnnClassifier(labels,vstack((class_1,class_2)))
     # test on the first point
@@ -26,7 +28,7 @@ for i, pklfile in enumerate(pklist):
 
     #define function for plotting
     def classify(x,y,model=model):
-        return array([model.classify([xx,yy]) for (xx,yy) in zip(x,y)])
+        return array([model.classify([xx, yy]) for (xx, yy) in zip(x,y)])
 
     # lot the classification boundary
     subplot(1,2,i+1)
